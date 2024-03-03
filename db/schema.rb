@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_03_185353) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_03_194626) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,38 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_03_185353) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "zip_code", null: false
+    t.string "street", null: false
+    t.string "complement"
+    t.string "neighborhood", null: false
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "ibge_code"
+    t.bigint "citizen_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["citizen_id"], name: "index_addresses_on_citizen_id"
+  end
+
+  create_table "citizens", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.virtual "full_name", type: :string, as: "(((first_name)::text || ' '::text) || (last_name)::text)", stored: true
+    t.string "cpf", null: false
+    t.string "national_health_card", null: false
+    t.string "email", null: false
+    t.date "birth_date", null: false
+    t.string "phone_number", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cpf"], name: "index_citizens_on_cpf", unique: true
+    t.index ["email"], name: "index_citizens_on_email", unique: true
+    t.index ["national_health_card"], name: "index_citizens_on_national_health_card", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "citizens"
 end
