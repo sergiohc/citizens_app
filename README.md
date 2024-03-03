@@ -61,5 +61,5 @@ docker compose up
 2. Em outro terminal, execute os testes com o seguinte comando:
 
 ```bash
-./run rspec:test
+./run test
 ```
