@@ -9,7 +9,8 @@ class Citizen < ApplicationRecord
   accepts_nested_attributes_for :address, reject_if: :all_blank
 
   # Validates the presence of essential attributes to ensure a Citizen record is complete.
-  validates :first_name, :last_name, :cpf, :national_health_card, :birth_date, :phone, presence: true
+  validates :first_name, :last_name, :cpf, :national_health_card, :birth_date,
+            :phone_number, presence: true
 
   # Ensures CPF is unique and exactly 11 digits long, assuming CPF is stored without formatting.
   validates :cpf, uniqueness: true, length: { is: 11 }
@@ -19,7 +20,8 @@ class Citizen < ApplicationRecord
 
   # Ensures the national health card and email are unique across all records.
   validates :national_health_card, uniqueness: true
-  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, uniqueness: true,
+                    format: { with: URI::MailTo::EMAIL_REGEXP }
 
   # Uses an enum for the 'status' field to neatly map the active (1) and inactive (0) states.
   enum status: { inactive: 0, active: 1 }
