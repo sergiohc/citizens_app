@@ -82,3 +82,4 @@ group :test do
 end
 
 gem 'cpf_cnpj'
+gem 'pagy', '~> 6.4'

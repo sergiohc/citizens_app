@@ -1,0 +1,25 @@
+<div class="mt-4">
+  <h1 class="text-center">Citizens</h1>
+
+  <div class="flex flex-row-reverse">
+    <%= link_to 'New citizen', new_citizen_path, class: 'btn-primary', data: { turbo_frame: "modal" } %>
+  </div>
+
+  <%= turbo_frame_tag 'search', target: '_top' do %>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+      <%= render partial: "citizens/list", locals: { citizens: @citizens } %>
+    </div>
+
+    <div class="flex mt-4">
+      <div class="div flex-1">
+        <%== pagy_nav(@pagy) %>
+      </div>
+
+      <div class="div flex-end mr-4">
+        <%== pagy_info(@pagy) %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
