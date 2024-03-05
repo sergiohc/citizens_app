@@ -4,5 +4,5 @@
 
 import { application } from "./application"
 
-import Components__ModalComponentController from "./components/modal_component_controller"
-application.register("components--modal-component", Components__ModalComponentController)
+import Components__DrawerComponentController from "./components/drawer_component_controller"
+application.register("components--drawer-component", Components__DrawerComponentController)

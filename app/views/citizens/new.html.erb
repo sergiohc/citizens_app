@@ -1,5 +1,5 @@
-<%= turbo_frame_tag "modal" do %>
-  <%= render(ModalComponent.new) do %>
+<%= turbo_frame_tag "drawer" do %>
+  <%= render(DrawerComponent.new(placement: "right", title: 'New Citizen')) do %>
     <%= render 'form', citizen: @citizen %>
   <% end %>
 <% end %>

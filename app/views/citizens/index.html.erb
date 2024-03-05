@@ -2,7 +2,7 @@
   <h1 class="text-center">Citizens</h1>
 
   <div class="flex flex-row-reverse">
-    <%= link_to 'New citizen', new_citizen_path, class: 'btn-primary', data: { turbo_frame: "modal" } %>
+    <%= button_to 'New citizen', new_citizen_path, method: :get, class: 'btn-primary', data: { turbo_frame: "drawer" } %>
   </div>
 
   <%= turbo_frame_tag 'search', target: '_top' do %>
