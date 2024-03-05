@@ -83,3 +83,4 @@ end
 
 gem 'cpf_cnpj'
 gem 'pagy', '~> 6.4'
+gem 'view_component'

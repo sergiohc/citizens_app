@@ -3,3 +3,6 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+
+import Components__ModalComponentController from "./components/modal_component_controller"
+application.register("components--modal-component", Components__ModalComponentController)
