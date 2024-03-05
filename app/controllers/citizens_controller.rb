@@ -16,7 +16,16 @@ class CitizensController < ApplicationController
 
   def new; end
 
-  def create; end
+  def create
+    respond_to do |format|
+      if Citizen.create!(citizen_params)
+        format.turbo_stream
+      else
+        msg = operation.errors.messages
+        format.turbo_stream { flash.now[:error] = msg }
+      end
+    end
+  end
 
   private
 
@@ -33,6 +42,6 @@ class CitizensController < ApplicationController
   def citizen_params
     params.require(:citizen).permit(:first_name, :last_name, :cpf, :national_health_card,
                                     :email, :birth_date, :phone, :status,
-                                    address_attributes: %i[id street ibge_code neighborhood city state cep _destroy])
+                                    address_attributes: %i[street ibge_code neighborhood city state zip_code])
   end
 end

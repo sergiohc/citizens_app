@@ -3,10 +3,25 @@
                                       controller: "nested-form",
                                       nested_form_wrapper_selector_value: '.nested-form-wrapper' } do |form| %>
 
+  <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"> General Information </h5>
 
   <div class="grid gap-4 mb-4 grid-cols-2">
     <%= render partial: 'general_info_fields', locals: { form: form } %>
   </div>
 
+  <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"> Address Information </h5>
+
+
+  <div class="grid gap-4 mb-4 grid-cols-2">
+    <%= render partial: 'address_fields', locals: { form: form } %>
+  </div>
+
+
+ <div class="bottom-0 left-0 flex justify-center w-full pb-4 space-x-4 md:px-4 md:absolute">
+    <%= form.submit 'Add Citizen', class: 'btn-primary' %>
+    <button data-action="click->components--drawer-component#toggle" class="btn-primary">
+      Cancel
+    </button>
+  </div>
 <% end %>
 

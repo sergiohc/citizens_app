@@ -21,7 +21,7 @@
         <td class="px-6 py-4"><%= citizen.national_health_card %></td>
         <td class="px-6 py-4"><%= citizen.phone_number %></td>
         <td class="px-6 py-4"><%= citizen.email %></td>
-        <td class="px-6 py-4"><%= render 'address_fields', address: citizen.address %></td>
+        <td class="px-6 py-4"><%= render 'address_info', address: citizen.address %></td>
       </tr>
     <% end %>
   </tbody>
