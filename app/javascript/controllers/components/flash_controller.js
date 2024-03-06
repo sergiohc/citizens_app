@@ -5,20 +5,17 @@ export default class extends Controller {
   connect() {
     console.log('connecting to data-controller="components--flash"');
     this.show();
-    // setTimeout(() => {
-    //   this.hide();
-    // }, 3000);
-
+    setTimeout(() => {
+      this.hide();
+    }, 3000);
   }
 
   show() {
-    console.log('show');
     this.element.classList.remove("hidden");
     this.element.classList.add("flex");
   }
 
   hide() {
-    console.log('hide');
     this.element.classList.add("hidden");
     this.element.classList.remove("flex");
   }
