@@ -1,8 +1,26 @@
 <div class="mt-4">
   <h1 class="text-center">Citizens</h1>
 
+  <div id="flash">
+    <%= render_flash_messages %>
+  </div>
+
   <div class="flex flex-row-reverse">
-    <%= button_to 'New citizen', new_citizen_path, method: :get, class: 'btn-primary', data: { turbo_frame: "drawer" } %>
+    <%= link_to 'New citizen', new_citizen_path,
+                               method: :get,
+                               class: 'btn-primary',
+                               data: {
+                                        turbo_frame: "drawer",
+                                        drawer_target: "drawer-right",
+                                        data_drawer: "right"
+                                     } %>
+  </div>
+
+  <div id="drawer-right"
+     class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-120 dark:bg-gray-800"
+     tabindex="-1" aria-labelledby="drawer-right-label">
+
+    <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">  </h5>
   </div>
 
   <%= turbo_frame_tag 'search', target: '_top' do %>

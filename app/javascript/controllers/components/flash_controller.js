@@ -5,9 +5,9 @@ export default class extends Controller {
   connect() {
     console.log('connecting to data-controller="components--flash"');
     this.show();
-    setTimeout(() => {
-      this.hide();
-    }, 3000);
+    // setTimeout(() => {
+    //   this.hide();
+    // }, 3000);
 
   }
 

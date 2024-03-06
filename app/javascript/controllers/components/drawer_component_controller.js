@@ -32,4 +32,9 @@ export default class extends Controller {
   disconnect() {
     this.drawer.hide();
   }
+
+  hideOnSuccess(event) {
+    if (!event.detail.fetchResponse.response.ok) return;
+     this.drawer.hide();
+  }
 }

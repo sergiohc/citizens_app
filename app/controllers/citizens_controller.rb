@@ -17,12 +17,12 @@ class CitizensController < ApplicationController
   def new; end
 
   def create
-    @citizen = Citizen.new(citizen_params)
+    # @citizen = Citizen.new(citizen_params)
 
-    if @citizen.save
-      flash[:notice] = 'Citizen created'
+    if true #@citizen.save
+      flash[:success] = 'Citizen created'
     else
-      flash[:error] = @citizen.errors.full_messages.to_sentence
+      flash[:danger] = @citizen.errors.full_messages.to_sentence
     end
 
     respond_to do |format|
@@ -45,7 +45,7 @@ class CitizensController < ApplicationController
 
   def citizen_params
     params.require(:citizen).permit(:first_name, :last_name, :cpf, :national_health_card,
-                                    :email, :birth_date, :phone, :status,
+                                    :email, :birth_date, :phone_number, :status,
                                     address_attributes: %i[street ibge_code neighborhood city state zip_code])
   end
 end

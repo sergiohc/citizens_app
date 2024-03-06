@@ -1,5 +1,5 @@
 <%= form_with model: citizen, class: 'p-4 md:p-5',
-                              data: { action: 'ajax:success->components--drawer-component#hide' } do |form| %>
+                              data: { action: 'turbo:submit-end->components--drawer-component#hideOnSuccess' } do |form| %>
 
   <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"> General Information </h5>
 
