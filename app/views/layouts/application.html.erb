@@ -47,6 +47,9 @@
     </div>
 
     <main class="md:container md:mx-auto">
+      <div id="flash" class="flex justify-center items-center">
+        <%= render_flash_messages %>
+      </div>
       <%= yield %>
       <%= turbo_frame_tag "drawer" %>
     </main>
