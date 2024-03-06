@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import Components__DrawerComponentController from "./components/drawer_component_controller"
 application.register("components--drawer-component", Components__DrawerComponentController)
+
+import Components__FlashController from "./components/flash_controller"
+application.register("components--flash", Components__FlashController)

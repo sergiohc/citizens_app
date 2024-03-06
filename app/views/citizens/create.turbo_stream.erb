@@ -1,0 +1,10 @@
+<%= turbo_stream.update("citizens", partial: "citizens/list", locals: { citizens: @citizens }) %>
+
+<% if flash.keys.first == 'alert' || flash.keys.first == 'error' %>
+  <%= turbo_stream.append "flash", render(FlashComponent.new(id: 'toast-danger', type: 'danger', message: flash.first.last)) %>
+<% else %>
+  <%= turbo_stream.append "flash", render(FlashComponent.new(id: 'toast-success', type: 'success', message: flash.first.last)) %>
+<% end %>
+
+<%= turbo_stream.update "flash", render_flash_messages %>
+

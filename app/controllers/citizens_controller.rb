@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CitizensController < ApplicationController
-  before_action :citizens, only: %i[index]
+  before_action :citizens, only: %i[index create]
   before_action :build_citizen, only: %i[new]
 
   include Pagy::Backend
@@ -17,13 +17,17 @@ class CitizensController < ApplicationController
   def new; end
 
   def create
+    @citizen = Citizen.new(citizen_params)
+
+    if @citizen.save
+      flash[:notice] = 'Citizen created'
+    else
+      flash[:error] = @citizen.errors.full_messages.to_sentence
+    end
+
     respond_to do |format|
-      if Citizen.create!(citizen_params)
-        format.turbo_stream
-      else
-        msg = operation.errors.messages
-        format.turbo_stream { flash.now[:error] = msg }
-      end
+      format.turbo_stream
+      format.html { redirect_to citizen_path }
     end
   end
 
