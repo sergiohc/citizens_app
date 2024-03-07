@@ -84,3 +84,5 @@ end
 gem 'cpf_cnpj'
 gem 'pagy', '~> 6.4'
 gem 'view_component'
+# Composable Operations is a tool set for creating operations [https://github.com/t6d/composable_operations]
+gem 'composable_operations', '~> 0.10.1'

@@ -2,6 +2,7 @@
 
 class CitizensController < ApplicationController
   before_action :citizens, only: %i[index update create]
+  before_action :citizen,  only: %i[show edit update]
   before_action :build_citizen, only: %i[new]
 
   include Pagy::Backend
@@ -10,46 +11,45 @@ class CitizensController < ApplicationController
     flash.keep if turbo_frame_request?
   end
 
-  def show
-    @citizen = Citizen.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @citizen = Citizen.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @citizen = Citizen.find(params[:id])
-
-    if @citizen.update(citizen_params)
-      flash[:success] = 'Citizen updated'
-    else
-      flash[:danger] = @citizen.errors.full_messages.to_sentence
-    end
+    operation = Operations::Citizens::Update.new(citizen_params)
+    operation.object = @citizen
+    operation.perform
 
     respond_to do |format|
-      format.turbo_stream
+      if operation.succeeded?
+        format.turbo_stream { flash.now[:success] = 'Citizen created' }
+      else
+        format.turbo_stream { flash.now[:danger] =  operation.errors.messages }
+      end
     end
   end
 
   def new; end
 
   def create
-    @citizen = Citizen.new(citizen_params)
-
-    if @citizen.save
-      flash[:success] = 'Citizen created'
-    else
-      flash[:danger] = @citizen.errors.full_messages.to_sentence
-    end
+    operation = Operations::Citizens::Create.new(citizen_params)
+    operation.perform
 
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to citizen_path }
+      if operation.succeeded?
+        format.turbo_stream { flash.now[:success] = 'Citizen created' }
+      else
+        msg = operation.errors.messages
+        format.turbo_stream { flash.now[:danger] = msg }
+      end
     end
   end
 
   private
+
+  def citizen
+    @citizen = Citizen.find(params[:id])
+  end
 
   def citizens
     @pagy, @citizens = pagy(Citizen.includes(:address).all, items: 5,
