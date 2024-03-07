@@ -7,20 +7,31 @@
       <th scope="col" class="px-6 py-3">Health Card</th>
       <th scope="col" class="px-6 py-3">Phone</th>
       <th scope="col" class="px-6 py-3">Address</th>
+      <th scope="col" class="px-6 py-3">Status</th>
       <th colspan="2"></th>
     </tr>
   </thead>
   <tbody class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
     <% citizens.each do |citizen| %>
       <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          <%= citizen.full_name %>
-        </th>
+        <td scope="row" class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
+          <%= display_citizen_photo(citizen, 'w-10 h-10 rounded-full' ) %>
+            <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
+              <div class="text-base font-semibold text-gray-900 dark:text-white"><%= citizen.full_name %></div>
+              <div class="text-sm font-normal text-gray-500 dark:text-gray-400"><%= citizen.email %></div>
+            </div>
+        </td>
         <td class="px-6 py-4"><%= citizen.cpf %></td>
         <td class="px-6 py-4"><%= citizen.birth_date %></td>
         <td class="px-6 py-4"><%= citizen.national_health_card %></td>
         <td class="px-6 py-4"><%= citizen.phone_number %></td>
         <td class="px-6 py-4"><%= render 'address_info', address: citizen.address %></td>
+        <td class="px-6 py-4">
+          <div class="flex items-center">
+            <div class="h-2.5 w-2.5 rounded-full <%= citizen.active? ? 'bg-green-400' : 'bg-red-400' %> mr-2"></div>
+            <%= citizen.status %>
+          </div>
+        </td>
         <td>
           <%= button_to citizen_path(citizen), method: :get, class: 'btn-primary', data: { turbo_frame: "drawer" } do %>
             <i class="bi bi-eyeglasses"></i>
