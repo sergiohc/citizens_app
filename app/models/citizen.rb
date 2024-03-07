@@ -31,6 +31,12 @@ class Citizen < ApplicationRecord
   # Validates that the associated address is also valid whenever a Citizen is saved.
   validates_associated :address
 
+  has_one_attached :photo do |attachable|
+    attachable.variant :thumb, resize_to_limit: [100, 100]
+    attachable.variant :medium, resize_to_limit: [300, 300]
+    attachable.variant :large, resize_to_limit: [600, 600]
+  end
+
   private
 
   # Validates the CPF for correctness beyond just format, utilizing the 'cpf_cnpj' gem for comprehensive checks.

@@ -1,39 +1,64 @@
-<div class="col-span-2 sm:col-span-1">
-  <%= form.label :first_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-  <%= form.text_field :first_name, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+
+<div data-controller="previews">
+  <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+    <div class="items-center sm:flex xl:block 2xl:flex sm:space-x-4 xl:space-x-0 2xl:space-x-4">
+      <% if citizen.photo.attached? %>
+        <%= image_tag citizen.photo, data: { previews_target: "preview" }, class: "mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0" %>
+      <% else %>
+        <%= image_tag "empty_photo.svg", data: { previews_target: "preview" }, class: "mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0" %>
+      <% end %>
+      <div>
+        <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">Picture</h3>
+        <div class="mb-4 text-sm text-gray-500 dark:text-gray-400">
+            JPG, or PNG. Max size of Todo
+        </div>
+        <%= form.label :photo, class: 'inline-flex items-center btn btn-primary' do %>
+          Select file
+          <%= form.file_field :photo,  data: { previews_target: "input", action: "change->previews#preview" }, class: 'hidden' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="col-span-2 sm:col-span-1">
-  <%= form.label :last_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-  <%= form.text_field :last_name, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
-</div>
+<div class="grid gap-4 mb-4 grid-cols-2">
+  <div class="col-span-2 sm:col-span-1">
+    <%= form.label :first_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :first_name, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  </div>
 
-<div class="col-span-2 sm:col-span-1">
-  <%= form.label :cpf, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-  <%= form.text_field :cpf, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
-</div>
+  <div class="col-span-2 sm:col-span-1">
+    <%= form.label :last_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :last_name, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  </div>
 
-<div class="col-span-2 sm:col-span-1">
-  <%= form.label :national_health_card, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-  <%= form.text_field :national_health_card, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
-</div>
+  <div class="col-span-2 sm:col-span-1">
+    <%= form.label :cpf, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :cpf, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  </div>
 
-<div class="col-span-2 sm:col-span-1">
-  <%= form.label :email, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-  <%= form.email_field :email, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
-</div>
+  <div class="col-span-2 sm:col-span-1">
+    <%= form.label :national_health_card, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :national_health_card, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  </div>
 
-<div class="col-span-2 sm:col-span-1">
-  <%= form.label :birth_date, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-  <%= form.date_field :birth_date, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
-</div>
+  <div class="col-span-2 sm:col-span-1">
+    <%= form.label :email, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.email_field :email, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  </div>
 
-<div class="col-span-2 sm:col-span-1">
-  <%= form.label :phone_number, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-  <%= form.telephone_field :phone_number, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
-</div>
+  <div class="col-span-2 sm:col-span-1">
+    <%= form.label :birth_date, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.date_field :birth_date, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  </div>
 
-<div class="col-span-2 sm:col-span-1">
-  <%= form.label :status, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-  <%= form.select :status, Citizen.statuses.keys, {}, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  <div class="col-span-2 sm:col-span-1">
+    <%= form.label :phone_number, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.telephone_field :phone_number, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  </div>
+
+  <div class="col-span-2 sm:col-span-1">
+    <%= form.label :status, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.select :status, Citizen.statuses.keys, {}, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500', required: true %>
+  </div>
 </div>

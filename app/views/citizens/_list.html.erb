@@ -1,12 +1,11 @@
 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th scope="col" class="px-6 py-3">Full Name</th>
+      <th scope="col" class="px-6 py-3">Name</th>
       <th scope="col" class="px-6 py-3">CPF</th>
       <th scope="col" class="px-6 py-3">Date of Birth</th>
       <th scope="col" class="px-6 py-3">Health Card</th>
       <th scope="col" class="px-6 py-3">Phone</th>
-      <th scope="col" class="px-6 py-3">Email</th>
       <th scope="col" class="px-6 py-3">Address</th>
       <th colspan="2"></th>
     </tr>
@@ -21,7 +20,6 @@
         <td class="px-6 py-4"><%= citizen.birth_date %></td>
         <td class="px-6 py-4"><%= citizen.national_health_card %></td>
         <td class="px-6 py-4"><%= citizen.phone_number %></td>
-        <td class="px-6 py-4"><%= citizen.email %></td>
         <td class="px-6 py-4"><%= render 'address_info', address: citizen.address %></td>
         <td>
           <%= button_to citizen_path(citizen), method: :get, class: 'btn-primary', data: { turbo_frame: "drawer" } do %>

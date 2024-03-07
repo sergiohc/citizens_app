@@ -61,7 +61,7 @@ class CitizensController < ApplicationController
 
   def citizen_params
     params.require(:citizen).permit(:first_name, :last_name, :cpf, :national_health_card,
-                                    :email, :birth_date, :phone_number, :status,
+                                    :email, :birth_date, :phone_number, :status, :photo,
                                     address_attributes: %i[street ibge_code neighborhood city state zip_code])
   end
 end

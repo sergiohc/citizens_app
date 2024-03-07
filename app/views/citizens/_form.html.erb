@@ -7,9 +7,7 @@
     <%= render_flash_messages %>
   </div>
 
-  <div class="grid gap-4 mb-4 grid-cols-2">
-    <%= render partial: 'general_info_fields', locals: { form: form } %>
-  </div>
+  <%= render partial: 'general_info_fields', locals: { form: form, citizen: citizen } %>
 
   <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"> Address Information </h5>
 

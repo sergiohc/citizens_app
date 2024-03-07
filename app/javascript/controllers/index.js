@@ -9,3 +9,6 @@ application.register("components--drawer-component", Components__DrawerComponent
 
 import Components__FlashController from "./components/flash_controller"
 application.register("components--flash", Components__FlashController)
+
+import PreviewsController from "./previews_controller"
+application.register("previews", PreviewsController)
