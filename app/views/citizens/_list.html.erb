@@ -8,6 +8,7 @@
       <th scope="col" class="px-6 py-3">Phone</th>
       <th scope="col" class="px-6 py-3">Email</th>
       <th scope="col" class="px-6 py-3">Address</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   <tbody class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
@@ -22,6 +23,19 @@
         <td class="px-6 py-4"><%= citizen.phone_number %></td>
         <td class="px-6 py-4"><%= citizen.email %></td>
         <td class="px-6 py-4"><%= render 'address_info', address: citizen.address %></td>
+        <td>
+          <%= button_to citizen_path(citizen), method: :get, class: 'btn-primary', data: { turbo_frame: "drawer" } do %>
+            <i class="bi bi-eyeglasses"></i>
+            Show
+          <% end %>
+        </td>
+
+        <td>
+          <%= button_to edit_citizen_path(citizen), method: :get, class: 'btn-primary', data: { turbo_frame: "drawer" } do %>
+            <i class="bi bi-pencil-square"></i>
+            Edit
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

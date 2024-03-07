@@ -1,25 +1,41 @@
 # frozen_string_literal: true
 
 class CitizensController < ApplicationController
-  before_action :citizens, only: %i[index create]
+  before_action :citizens, only: %i[index update create]
   before_action :build_citizen, only: %i[new]
 
   include Pagy::Backend
 
-  def index; end
+  def index
+    flash.keep if turbo_frame_request?
+  end
 
   def show; end
 
-  def edit; end
+  def edit
+    @citizen = Citizen.find(params[:id])
+  end
 
-  def update; end
+  def update
+    @citizen = Citizen.find(params[:id])
+
+    if @citizen.update(citizen_params)
+      flash[:success] = 'Citizen updated'
+    else
+      flash[:danger] = @citizen.errors.full_messages.to_sentence
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
 
   def new; end
 
   def create
-    # @citizen = Citizen.new(citizen_params)
+    @citizen = Citizen.new(citizen_params)
 
-    if true #@citizen.save
+    if @citizen.save
       flash[:success] = 'Citizen created'
     else
       flash[:danger] = @citizen.errors.full_messages.to_sentence

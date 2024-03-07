@@ -5,11 +5,10 @@ class Citizen < ApplicationRecord
   has_one :address, dependent: :destroy
 
   # Allows creation/update of an associated address directly within a Citizen's form.
-  # Rejects the address attributes if all are blank to prevent empty address records.
-  accepts_nested_attributes_for :address, reject_if: :all_blank
+  accepts_nested_attributes_for :address
 
   # Validates the presence of essential attributes to ensure a Citizen record is complete.
-  validates :first_name, :last_name, :cpf, :national_health_card, :birth_date,
+  validates :first_name, :last_name, :cpf, :birth_date,
             :phone_number, presence: true
 
   # Ensures CPF is unique and exactly 11 digits long, assuming CPF is stored without formatting.
@@ -22,6 +21,9 @@ class Citizen < ApplicationRecord
   validates :national_health_card, uniqueness: true
   validates :email, uniqueness: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  # Validate min and max age
+  validate :validate_age
 
   # Uses an enum for the 'status' field to neatly map the active (1) and inactive (0) states.
   enum status: { inactive: 0, active: 1 }
@@ -37,5 +39,15 @@ class Citizen < ApplicationRecord
     return if CPF.valid?(cpf.gsub(/[^0-9]/, ''), strict: true)
 
     errors.add(:cpf, 'is invalid')
+  end
+
+  def validate_age
+    return if birth_date.blank?
+
+    if birth_date > 18.years.ago.to_date
+      errors.add(:birth_date, 'You must be at least 18 years old')
+    elsif birth_date < 100.years.ago.to_date
+      errors.add(:birth_date, 'Age seems to be invalid') # Mensagem de erro genérica; ajuste conforme necessário.
+    end
   end
 end
