@@ -10,7 +10,9 @@ class CitizensController < ApplicationController
     flash.keep if turbo_frame_request?
   end
 
-  def show; end
+  def show
+    @citizen = Citizen.find(params[:id])
+  end
 
   def edit
     @citizen = Citizen.find(params[:id])
