@@ -8,7 +8,7 @@ class Citizen < ApplicationRecord
   accepts_nested_attributes_for :address
 
   # Validates the presence of essential attributes to ensure a Citizen record is complete.
-  validates :first_name, :last_name, :cpf, :birth_date,
+  validates :first_name, :last_name, :cpf, :national_health_card, :birth_date,
             :phone_number, presence: true
 
   # Ensures CPF is unique and exactly 11 digits long, assuming CPF is stored without formatting.
