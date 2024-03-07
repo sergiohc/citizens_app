@@ -15,6 +15,10 @@
     email: FFaker::Internet.email
   )
 
+  avatar_files = Dir.glob(Rails.root.join('app', 'assets', 'images', 'avatars', '*'))
+  selected_avatar = avatar_files.sample
+  citizen.photo.attach(io: File.open(selected_avatar), filename: File.basename(selected_avatar))
+
   citizen.create_address!(
     street: FFaker::AddressBR.street_name,
     neighborhood: FFaker::AddressBR.neighborhood,
