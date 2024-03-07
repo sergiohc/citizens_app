@@ -31,9 +31,11 @@ module Operations
       end
 
       def persist
-        return @object if @object.update(:params)
-
-        halt @object.errors
+        if @object.update(params)
+          NotifyMunicipeCanBeCreatedJob.perform_later(@object)
+        else
+          halt @object.errors
+        end
       end
     end
   end
