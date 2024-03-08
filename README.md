@@ -19,7 +19,7 @@ esses comandos para o PowerShell, se quiser.
 
 ```sh
 git clone git@github.com:sergiohc/
-cd path
+cd citizen
 ```
 
 #### Copie o arquivo .env de exemplo:
