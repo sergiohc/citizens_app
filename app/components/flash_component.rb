@@ -4,6 +4,7 @@ class FlashComponent < ViewComponent::Base
   include ApplicationHelper
 
   def initialize(id:, type:, message:)
+    super
     @id = id
     @type = type
     @message = message

@@ -4,12 +4,9 @@ class DrawerComponent < ViewComponent::Base
   include Turbo::FramesHelper
 
   def initialize(placement:, title:)
+    super
     @placement = placement
     @title = title
-  end
-
-  def render
-    render template: 'drawer'
   end
 
   def drawer_id

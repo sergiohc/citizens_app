@@ -19,7 +19,7 @@ Metrics/BlockLength:
  ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 
 Metrics/LineLength:
-  Max: 80
+  Max: 120
   IgnoredPatterns: ['\#']
 
 AsciiComments:
