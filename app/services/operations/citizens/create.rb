@@ -32,10 +32,29 @@ module Operations
 
       def persist
         if @object.update(params)
-          NotifyMunicipeCanBeCreatedJob.perform_later(@object)
+          send_email_notification
+          send_sms_message
         else
           halt @object.errors
         end
+      end
+
+      def send_email_notification
+        NotifyMunicipeCanBeCreatedJob.perform_later(@object)
+      end
+
+      def send_sms_message
+        sms_params = {
+          phone_number: @object.phone_number,
+          body: 'Sua solicitação foi atualizada com sucesso.'
+        }
+
+        send_sms_operation = Operations::Twilio::SendSms.new(sms_params)
+        send_sms_result = send_sms_operation.perform
+
+        return if send_sms_result.success?
+
+        Rails.logger.error("Falha ao enviar SMS: #{send_sms_result.errors.join(', ')}")
       end
     end
   end

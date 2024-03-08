@@ -3,27 +3,18 @@
 module Operations
   module Twilio
     class Lookup < Base
-      processes :params
-
-      attr_reader :client, :validator
-
-      delegate :errors, to: :validator
+      processes :phone_number
 
       def execute
-        build
-        validate
-        persist
-        @object
+        validate_phone_number
       end
 
       private
 
-      def build
-        @object = twilio_client
-      end
-
-      def persist
-        @object.lookups.v2.phone_numbers(params).fetch
+      def validate_phone_number
+        twilio_client.lookups.v2.phone_numbers(phone_number).fetch
+      rescue Twilio::REST::RestError => e
+        halt e
       end
     end
   end

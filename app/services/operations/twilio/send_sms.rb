@@ -5,40 +5,34 @@ module Operations
     class SendSms < Base
       processes :params
 
-      attr_reader :object, :validator
-
-      delegate :errors, to: :validator
+      def initialize(*args, validator: Operations::Twilio::Lookup)
+        super(*args)
+        @validator = validator.new(params[:phone_number])
+      end
 
       def execute
-        build
-        validate
-        persist
-        @object
+        validate_phone_number
+        send_sms_message
       end
 
       private
 
-      def build
-        @citizen_phone_number = params[:citizen_phone_number]
-        @body = params[:body]
-        @object = twilio_client
-      end
+      attr_reader :validator
 
-      def validate
-        @validator = ::Operations::Twilio::Lookup.new params[:phone_number]
+      def validate_phone_number
         @validator.perform
-
-        return if @validator.valid?
-
-        halt @validator.errors
+      rescue StandardError => e
+        halt "Validation Failed: #{e.message}"
       end
 
-      def persist
-        @object.messages.create(
-          from: ENV['TWILIO_PHONE_NUMBER'],
-          to: @citizen_phone_number,
-          body: @body
+      def send_sms_message
+        twilio_client.messages.create(
+          from: ENV.fetch('TWILIO_PHONE'),
+          to: params[:phone_number],
+          body: params[:body]
         )
+      rescue Twilio::REST::RestError => e
+        halt "SMS Sending Failed: #{e.message}"
       end
     end
   end
