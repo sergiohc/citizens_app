@@ -90,15 +90,5 @@ Rails.application.configure do
   config.web_console.allowed_ips = ['0.0.0.0/0']
 
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   :user_name => 'af3e26e8380c6e',
-  #   :password => '6b40e55ae7821b',
-  #   :address => 'sandbox.smtp.mailtrap.io',
-  #   :host => 'sandbox.smtp.mailtrap.io',
-  #   :port => '2525',
-  #   :authentication => :login
-  # }
-
-  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'mailcatcher', port: 1025 }
 end

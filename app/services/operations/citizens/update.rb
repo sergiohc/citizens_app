@@ -6,7 +6,7 @@ module Operations
       processes :params
 
       attr_accessor :object
-      attr_reader :validator
+      attr_reader :validator, :status_changed
 
       delegate :errors, to: :validator
 
@@ -27,9 +27,14 @@ module Operations
       end
 
       def persist
-        return @object if @object.update(params)
-
-        halt @object.errors
+        if @object.update(params)
+          if @object.status_previously_changed?
+            NotifyMunicipeCanBeStatusUpdatedJob
+              .perform_later(@object)
+          end
+        else
+          halt @object.errors
+        end
       end
     end
   end

@@ -6,4 +6,10 @@ class CitizenMailer < ApplicationMailer
 
     mail(to: citizen.email, subject: 'Register municipe')
   end
+
+  def notify_municipe_status_updated(citizen)
+    @full_name = citizen.full_name
+
+    mail(to: citizen.email, subject: 'Estatus alterado')
+  end
 end
