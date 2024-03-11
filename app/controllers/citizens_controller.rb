@@ -24,7 +24,7 @@ class CitizensController < ApplicationController
       if operation.succeeded?
         format.turbo_stream { flash.now[:success] = 'Citizen updated' }
       else
-        format.turbo_stream { flash.now[:danger] = operation.errors.messages }
+        format.turbo_stream { flash.now[:danger] = 'Não foi possivel atualizar' }
       end
     end
   end
