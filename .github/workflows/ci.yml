@@ -21,7 +21,7 @@ jobs:
           ./run ci:install-deps
 
       - name: "Test"
-        env:
+        with:
           ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
           AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
           TWILIO_PHONE: ${{ secrets.TWILIO_PHONE }}
