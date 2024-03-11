@@ -7,7 +7,6 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-
 # Loading Shoulda Matchers and Integration with Rspec and Rails
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

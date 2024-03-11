@@ -31,7 +31,7 @@ module Operations
           to: params[:phone_number],
           body: params[:body]
         )
-      rescue Twilio::REST::RestError => e
+      rescue ::Twilio::REST::RestError => e
         halt "SMS Sending Failed: #{e.message}"
       end
     end

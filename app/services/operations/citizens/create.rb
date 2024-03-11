@@ -49,12 +49,12 @@ module Operations
           body: 'Sua solicitação foi atualizada com sucesso.'
         }
 
-        send_sms_operation = Operations::Twilio::SendSms.new(sms_params)
-        send_sms_result = send_sms_operation.perform
+        operation = Operations::Twilio::SendSms.new(sms_params)
+        operation.perform
 
-        return if send_sms_result.success?
+        return if operation.succeeded?
 
-        Rails.logger.error("Falha ao enviar SMS: #{send_sms_result.errors.join(', ')}")
+        Rails.logger.error("Falha ao enviar SMS: #{operation.errors.join(', ')}")
       end
     end
   end

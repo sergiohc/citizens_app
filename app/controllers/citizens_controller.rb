@@ -22,7 +22,7 @@ class CitizensController < ApplicationController
 
     respond_to do |format|
       if operation.succeeded?
-        format.turbo_stream { flash.now[:success] = 'Citizen created' }
+        format.turbo_stream { flash.now[:success] = 'Citizen updated' }
       else
         format.turbo_stream { flash.now[:danger] = operation.errors.messages }
       end

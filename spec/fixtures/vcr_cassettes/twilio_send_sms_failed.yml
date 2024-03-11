@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.twilio.com/2010-04-01/Accounts/<ACCOUNT_SID>/Messages.json
+    body:
+      encoding: UTF-8
+      string: Body=Test+message&From=%2B17278003657&To=
+    headers:
+      User-Agent:
+      - twilio-ruby/6.8.3 (linux x86_64) Ruby/3.3.0
+      Accept-Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - application/json
+      Authorization:
+      - Basic QUNhN2ZlNDMyZjJlMzgyMTYzZmUwYjMwN2RiOGRmNzQ5ZDozNzBhYTNiYjRhMGI2ZjFhOTAwMGYwN2RjYWIzNGU4Nw==
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Mon, 11 Mar 2024 19:13:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '134'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, Authorization, Content-Type, If-Match, If-Modified-Since, If-None-Match,
+        If-Unmodified-Since, Idempotency-Key
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - ETag
+      Twilio-Request-Id:
+      - RQfacb48b2c47c23dfa8d5842161ebdbdf
+      Twilio-Request-Duration:
+      - '0.019'
+      Twilio-Concurrent-Requests:
+      - '1'
+      X-Shenanigans:
+      - none
+      X-Powered-By:
+      - AT-5000
+      X-Home-Region:
+      - us1
+      X-Api-Domain:
+      - api.twilio.com
+    body:
+      encoding: UTF-8
+      string: '{"code": 21604, "message": "A ''To'' phone number is required.", "more_info":
+        "https://www.twilio.com/docs/errors/21604", "status": 400}'
+    http_version:
+  recorded_at: Mon, 11 Mar 2024 19:08:16 GMT
+recorded_with: VCR 3.0.3

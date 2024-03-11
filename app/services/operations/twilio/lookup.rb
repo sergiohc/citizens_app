@@ -13,7 +13,7 @@ module Operations
 
       def validate_phone_number
         twilio_client.lookups.v2.phone_numbers(phone_number).fetch
-      rescue Twilio::REST::RestError => e
+      rescue ::Twilio::REST::RestError => e
         halt e
       end
     end

@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.twilio.com/2010-04-01/Accounts/<ACCOUNT_SID>/Messages.json
+    body:
+      encoding: UTF-8
+      string: Body=Test+message&From=%2B17278003657&To=%2B5541998254341
+    headers:
+      User-Agent:
+      - twilio-ruby/6.8.3 (linux x86_64) Ruby/3.3.0
+      Accept-Charset:
+      - utf-8
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept:
+      - application/json
+      Authorization:
+      - Basic QUNhN2ZlNDMyZjJlMzgyMTYzZmUwYjMwN2RiOGRmNzQ5ZDozNzBhYTNiYjRhMGI2ZjFhOTAwMGYwN2RjYWIzNGU4Nw==
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 11 Mar 2024 18:39:30 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '776'
+      Connection:
+      - keep-alive
+      Twilio-Concurrent-Requests:
+      - '1'
+      Twilio-Request-Id:
+      - RQe60387c128198ea4423829ede77d1a92
+      Twilio-Request-Duration:
+      - '171'
+      X-Api-Domain:
+      - api.twilio.com
+      Strict-Transport-Security:
+      - max-age=31536000
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Accept, Authorization, Content-Type, If-Match, If-Modified-Since, If-None-Match,
+        If-Unmodified-Since, Idempotency-Key, X-Pre-Auth-Context, X-Target-Region
+      Access-Control-Allow-Methods:
+      - GET, POST, PATCH, PUT, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - ETag, Twilio-Request-Id
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Shenanigans:
+      - none
+      X-Powered-By:
+      - AT-5000
+      X-Home-Region:
+      - us1
+    body:
+      encoding: UTF-8
+      string: '{"account_sid":"<ACCOUNT_SID>","api_version":"2010-04-01","body":"Sent
+        from your Twilio trial account - Test message","date_created":"Mon, 11 Mar
+        2024 18:39:30 +0000","date_sent":null,"date_updated":"Mon, 11 Mar 2024 18:39:30
+        +0000","direction":"outbound-api","error_code":null,"error_message":null,"from":"<TWILIO_PHONE>","messaging_service_sid":null,"num_media":"0","num_segments":"1","price":null,"price_unit":"USD","sid":"SMe60387c128198ea4423829ede77d1a92","status":"queued","subresource_uris":{"media":"/2010-04-01/Accounts/<ACCOUNT_SID>/Messages/SMe60387c128198ea4423829ede77d1a92/Media.json"},"to":"+5541998254341","uri":"/2010-04-01/Accounts/<ACCOUNT_SID>/Messages/SMe60387c128198ea4423829ede77d1a92.json"}'
+    http_version:
+  recorded_at: Mon, 11 Mar 2024 18:34:34 GMT
+recorded_with: VCR 3.0.3
