@@ -21,6 +21,10 @@ jobs:
           ./run ci:install-deps
 
       - name: "Test"
+        env:
+          AUTH_TOKEN: 370aa3bb4a0b6f1a9000f07dcab34e87
+          ACCOUNT_SID: ACa7fe432f2e382163fe0b307db8df749d
+          TWILIO_PHONE: +17278003657
         run: |
           # Remove volumes in CI to avoid permission errors due to UID / GID.
           sed -i "s|.:/app|/tmp:/tmp|g" .env*
