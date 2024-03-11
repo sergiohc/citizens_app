@@ -1,10 +1,5 @@
 name: "CI"
 
-env:
-  ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
-  AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
-  TWILIO_PHONE: ${{ secrets.TWILIO_PHONE }}
-
 on:
   pull_request:
     branches:
