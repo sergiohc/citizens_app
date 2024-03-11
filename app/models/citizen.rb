@@ -41,6 +41,7 @@ class Citizen < ApplicationRecord
 
   # Validates the CPF for correctness beyond just format, utilizing the 'cpf_cnpj' gem for comprehensive checks.
   def validate_cpf
+    return if cpf.blank?
     # Strips non-numeric characters from CPF and checks validity.
     return if CPF.valid?(cpf.gsub(/[^0-9]/, ''), strict: true)
 

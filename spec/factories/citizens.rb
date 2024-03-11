@@ -9,7 +9,7 @@ FactoryBot.define do
     national_health_card { FFaker::Identification.ssn }
     email { FFaker::Internet.email }
     birth_date do
-      FFaker::Time.between(Date.new(1900, 1, 1), Date.new(2000, 12, 31)).to_date
+      FFaker::Time.between(99.years.ago, 18.years.ago).to_date
     end
     phone_number { FFaker::PhoneNumberBR.international_phone_number }
     status { %w[active inactive].sample }

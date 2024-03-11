@@ -3,11 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  it 'is valid with valid attributes' do
+  it 'has a valid factory' do
     expect(build(:address)).to be_valid
   end
 
-  it 'is not valid without a zip code' do
-    expect(build(:address, zip_code: nil)).not_to be_valid
-  end
+  # Presence validations
+  it { should validate_presence_of(:zip_code) }
+  it { should validate_presence_of(:street) }
+  it { should validate_presence_of(:neighborhood) }
+  it { should validate_presence_of(:city) }
+  it { should validate_presence_of(:state) }
+
+  # Association test
+  it { should belong_to(:citizen) }
 end

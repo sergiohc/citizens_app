@@ -78,7 +78,10 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 6.0'
+  gem 'vcr', '~> 3.0', '>= 3.0.1'
   gem 'webdrivers'
+  gem 'webmock', '~> 3.23'
 end
 
 gem 'cpf_cnpj'
