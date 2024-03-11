@@ -15,11 +15,9 @@ jobs:
 
     steps:
       - uses: "actions/checkout@v2"
-
       - name: "Install CI dependencies"
         run: |
           ./run ci:install-deps
-
       - name: "Test"
         with:
           ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
