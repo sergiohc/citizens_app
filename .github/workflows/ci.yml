@@ -1,5 +1,10 @@
 name: "CI"
 
+env:
+  ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
+  AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+  TWILIO_PHONE: ${{ secrets.TWILIO_PHONE }}
+
 on:
   pull_request:
     branches:
@@ -19,10 +24,6 @@ jobs:
         run: |
           ./run ci:install-deps
       - name: "Test"
-        with:
-          ACCOUNT_SID: ${{ secrets.ACCOUNT_SID }}
-          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
-          TWILIO_PHONE: ${{ secrets.TWILIO_PHONE }}
         run: |
           # Remove volumes in CI to avoid permission errors due to UID / GID.
           sed -i "s|.:/app|/tmp:/tmp|g" .env*
