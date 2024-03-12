@@ -54,7 +54,7 @@ module Operations
 
         return if operation.succeeded?
 
-        Rails.logger.error("Falha ao enviar SMS: #{operation.errors.join(', ')}")
+        Rails.logger.error("Falha ao enviar SMS: #{sms_params[:phone_number]}")
       end
     end
   end
