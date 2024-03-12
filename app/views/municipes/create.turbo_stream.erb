@@ -1,4 +1,4 @@
-<%= turbo_stream.update("citizens", partial: "citizens/list", locals: { citizens: @citizens }) %>
+<%= turbo_stream.update("municipes", partial: "municipes/list", locals: { municipes: @municipes }) %>
 
 <% if flash.keys.first == 'alert' || flash.keys.first == 'danger' %>
   <%= turbo_stream.append "flash", render_flash_messages %>

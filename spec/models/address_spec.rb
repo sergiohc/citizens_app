@@ -15,5 +15,5 @@ RSpec.describe Address, type: :model do
   it { should validate_presence_of(:state) }
 
   # Association test
-  it { should belong_to(:citizen) }
+  it { should belong_to(:municipe) }
 end

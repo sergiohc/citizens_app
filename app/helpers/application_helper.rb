@@ -3,10 +3,10 @@
 module ApplicationHelper
   include Pagy::Frontend
 
-  def display_citizen_photo(citizen,
+  def display_municipe_photo(municipe,
                             css = 'mb-4 rounded-lg w-28 h-28 sm:mb-0 xl:mb-4 2xl:mb-0')
-    if citizen.photo.attached?
-      image_tag citizen.photo, data: { previews_target: 'preview' }, class: css
+    if municipe.photo.attached?
+      image_tag municipe.photo, data: { previews_target: 'preview' }, class: css
     else
       image_tag 'empty_photo.svg', data: { previews_target: 'preview' },
                                    class: css

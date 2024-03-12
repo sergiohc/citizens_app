@@ -3,7 +3,7 @@
 class NotifyMunicipeCanBeStatusUpdatedJob < ApplicationJob
   queue_as :default
 
-  def perform(citizen)
-    CitizenMailer.notify_municipe_status_updated(citizen).deliver_later
+  def perform(municipe)
+    MunicipeMailer.notify_municipe_status_updated(municipe).deliver_later
   end
 end

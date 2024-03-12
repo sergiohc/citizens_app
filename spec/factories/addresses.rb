@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :address do
-    citizen
+    municipe
     zip_code { FFaker::AddressBR.zip_code }
     street { FFaker::AddressBR.street_name }
     neighborhood { FFaker::AddressBR.neighborhood }

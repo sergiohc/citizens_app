@@ -4,7 +4,7 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 10.times do
-  citizen = Citizen.create!(
+  municipe = Municipe.create!(
     first_name: FFaker::NameBR.first_name,
     last_name: FFaker::NameBR.last_name,
     cpf: FFaker::IdentificationBR.cpf,
@@ -17,9 +17,9 @@
 
   avatar_files = Dir.glob(Rails.root.join('app', 'assets', 'images', 'avatars', '*'))
   selected_avatar = avatar_files.sample
-  citizen.photo.attach(io: File.open(selected_avatar), filename: File.basename(selected_avatar))
+  municipe.photo.attach(io: File.open(selected_avatar), filename: File.basename(selected_avatar))
 
-  citizen.create_address!(
+  municipe.create_address!(
     street: FFaker::AddressBR.street_name,
     neighborhood: FFaker::AddressBR.neighborhood,
     city: FFaker::AddressBR.city,

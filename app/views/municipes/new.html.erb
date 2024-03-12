@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "drawer" do %>
+  <%= render(DrawerComponent.new(placement: "right", title: 'New Municipe')) do %>
+    <%= render 'form', municipe: @municipe %>
+  <% end %>
+<% end %>

@@ -1,8 +1,8 @@
 <div class="mt-4">
-  <h1 class="text-center">Citizens</h1>
+  <h1 class="text-center">Municipes</h1>
 
   <div class="flex flex-row-reverse">
-    <%= link_to 'New citizen', new_citizen_path,
+    <%= link_to 'New municipe', new_municipe_path,
                                method: :get,
                                class: 'btn-primary',
                                data: {
@@ -21,7 +21,7 @@
 
   <%= turbo_frame_tag 'search', target: '_top' do %>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
-      <%= render partial: "citizens/list", locals: { citizens: @citizens } %>
+      <%= render partial: "municipes/list", locals: { municipes: @municipes } %>
     </div>
 
     <div class="flex mt-4">

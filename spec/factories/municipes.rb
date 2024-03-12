@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# spec/factories/citizens.rb
+# spec/factories/municipes.rb
 FactoryBot.define do
-  factory :citizen do
+  factory :municipe do
     first_name { FFaker::NameBR.first_name }
     last_name { FFaker::NameBR.last_name }
     cpf { FFaker::IdentificationBR.cpf }

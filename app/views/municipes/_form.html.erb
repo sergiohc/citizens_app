@@ -1,4 +1,4 @@
-<%= form_with model: citizen, class: 'p-4 md:p-5',
+<%= form_with model: municipe, class: 'p-4 md:p-5',
                               data: { action: 'turbo:submit-end->components--drawer-component#hideOnSuccess' } do |form| %>
 
   <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"> General Information </h5>
@@ -7,7 +7,7 @@
     <%= render_flash_messages %>
   </div>
 
-  <%= render partial: 'general_info_fields', locals: { form: form, citizen: citizen } %>
+  <%= render partial: 'general_info_fields', locals: { form: form, municipe: municipe } %>
 
   <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"> Address Information </h5>
 

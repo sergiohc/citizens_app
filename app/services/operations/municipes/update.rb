@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module Operations
-  module Citizens
-    class Create < ComposableOperations::Operation
+  module Municipes
+    class Update < ComposableOperations::Operation
       processes :params
 
-      attr_reader :object, :validator
+      attr_accessor :object
+      attr_reader :validator, :status_changed
 
       delegate :errors, to: :validator
 
       def execute
-        build
         validate
         persist
         @object
@@ -19,34 +19,32 @@ module Operations
       private
 
       def validate
-        @validator = ::Operations::Citizens::Validator.new @object
+        @validator = ::Operations::Municipes::Validator.new @object
 
         return if @validator.valid?
 
         halt @validator.errors
       end
 
-      def build
-        @object = Citizen.new(params)
-      end
-
       def persist
         if @object.update(params)
-          send_email_notification
-          send_sms_message
+          if @object.status_previously_changed?
+            send_email_notification
+            send_sms_notification
+          end
         else
           halt @object.errors
         end
       end
 
       def send_email_notification
-        NotifyMunicipeCanBeCreatedJob.perform_later(@object)
+        NotifyMunicipeCanBeStatusUpdatedJob.perform_later(@object)
       end
 
-      def send_sms_message
+      def send_sms_notification
         sms_params = {
           phone_number: @object.phone_number,
-          body: 'Sua solicitação foi atualizada com sucesso.'
+          body: 'Seu municpe status foi atualizado.'
         }
 
         operation = Operations::Twilio::SendSms.new(sms_params)
@@ -54,7 +52,8 @@ module Operations
 
         return if operation.succeeded?
 
-        Rails.logger.error("Falha ao enviar SMS: #{operation.errors.join(', ')}")
+        Rails.logger.error("Falha ao enviar SMS: #{operation.message}")
+        halt operation.message
       end
     end
   end

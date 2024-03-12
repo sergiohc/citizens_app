@@ -1,14 +1,14 @@
 <%= turbo_frame_tag "drawer" do %>
-  <%= render(DrawerComponent.new(placement: "right", title: 'Show Citizen')) do %>
+  <%= render(DrawerComponent.new(placement: "right", title: 'Show Municipe')) do %>
     <div class="p-4 md:p-5">
         <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"> General Information </h5>
 
-        <p><strong>Name:</strong> <%= @citizen.full_name %></p>
-        <p><strong>Email:</strong> <%= @citizen.email %></p>
+        <p><strong>Name:</strong> <%= @municipe.full_name %></p>
+        <p><strong>Email:</strong> <%= @municipe.email %></p>
 
         <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"> Address Information </h5>
 
-        <p><strong>Street:</strong> <%= @citizen.address.street %></p>
+        <p><strong>Street:</strong> <%= @municipe.address.street %></p>
       </div>
     </div>
   <% end %>

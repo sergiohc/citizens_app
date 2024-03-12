@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class Citizen < ApplicationRecord
-  # One-to-one association with Address. The address is automatically destroyed if the citizen is deleted.
+class Municipe < ApplicationRecord
+  # One-to-one association with Address. The address is automatically destroyed if the Municipe is deleted.
   has_one :address, dependent: :destroy
 
-  # Allows creation/update of an associated address directly within a Citizen's form.
+  # Allows creation/update of an associated address directly within a Municipe's form.
   accepts_nested_attributes_for :address
 
-  # Validates the presence of essential attributes to ensure a Citizen record is complete.
+  # Validates the presence of essential attributes to ensure a Municipe record is complete.
   validates :first_name, :last_name, :cpf, :national_health_card, :birth_date,
             :phone_number, presence: true
 
@@ -28,7 +28,7 @@ class Citizen < ApplicationRecord
   # Uses an enum for the 'status' field to neatly map the active (1) and inactive (0) states.
   enum status: { inactive: 0, active: 1 }
 
-  # Validates that the associated address is also valid whenever a Citizen is saved.
+  # Validates that the associated address is also valid whenever a Municipe is saved.
   validates_associated :address
 
   has_one_attached :photo do |attachable|

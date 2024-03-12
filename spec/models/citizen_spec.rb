@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Citizen, type: :model do
-  subject(:citizen) { build(:citizen) }
+RSpec.describe Municipe, type: :model do
+  subject(:municipe) { build(:municipe) }
   describe 'validations' do
     it 'has a valid factory' do
-      expect(citizen).to be_valid
+      expect(municipe).to be_valid
     end
 
     it { should validate_presence_of(:first_name) }
@@ -25,43 +25,43 @@ RSpec.describe Citizen, type: :model do
     describe 'CPF validation' do
       context 'when CPF is invalid' do
         it 'is not valid' do
-          citizen.cpf = '12341234512'
-          expect(citizen).not_to be_valid
-          expect(citizen.errors[:cpf]).to include('is invalid')
+          municipe.cpf = '12341234512'
+          expect(municipe).not_to be_valid
+          expect(municipe.errors[:cpf]).to include('is invalid')
         end
       end
 
       context 'when CPF is valid' do
         it 'is valid' do
-          expect(citizen).to be_valid
+          expect(municipe).to be_valid
         end
       end
     end
 
     describe 'age validation' do
       context 'when age is less than 18' do
-        before { citizen.birth_date = 17.years.ago }
+        before { municipe.birth_date = 17.years.ago }
 
         it 'is not valid' do
-          expect(citizen).not_to be_valid
-          expect(citizen.errors[:birth_date]).to include('You must be at least 18 years old')
+          expect(municipe).not_to be_valid
+          expect(municipe.errors[:birth_date]).to include('You must be at least 18 years old')
         end
       end
 
       context 'when age is more than 100' do
-        before { citizen.birth_date = 101.years.ago }
+        before { municipe.birth_date = 101.years.ago }
 
         it 'is not valid' do
-          expect(citizen).not_to be_valid
-          expect(citizen.errors[:birth_date]).to include('Age seems to be invalid')
+          expect(municipe).not_to be_valid
+          expect(municipe.errors[:birth_date]).to include('Age seems to be invalid')
         end
       end
 
       context 'when age is between 18 and 100' do
-        before { citizen.birth_date = 50.years.ago }
+        before { municipe.birth_date = 50.years.ago }
 
         it 'is valid' do
-          expect(citizen).to be_valid
+          expect(municipe).to be_valid
         end
       end
     end
