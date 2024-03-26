@@ -1,15 +1,19 @@
 <div class="mt-4">
   <h1 class="text-center">Municipes</h1>
 
-  <div class="flex flex-row-reverse">
-    <%= link_to 'New municipe', new_municipe_path,
-                               method: :get,
-                               class: 'btn-primary',
-                               data: {
-                                        turbo_frame: "drawer",
-                                        drawer_target: "drawer-right",
-                                        data_drawer: "right"
-                                     } %>
+  <div class="flex justify-between items-center mt-5">
+    <div class="w-1/2">
+      <%= render partial: "search_form" %>
+    </div>
+    <div class="flex justify-end">
+      <%= link_to 'New municipe', new_municipe_path,
+                  method: :get,
+                  class: "btn btn-primary ml-2",  data: {
+                    turbo_frame: "drawer",
+                    drawer_target: "drawer-right",
+                    data_drawer: "right"
+                  } %>
+    </div>
   </div>
 
   <div id="drawer-right"
@@ -19,7 +23,7 @@
     <h5 class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">  </h5>
   </div>
 
-  <%= turbo_frame_tag 'search', target: '_top' do %>
+  <%= turbo_frame_tag 'search-results', target: '_top' do %>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
       <%= render partial: "municipes/list", locals: { municipes: @municipes } %>
     </div>
@@ -33,7 +37,6 @@
         <%== pagy_info(@pagy) %>
       </div>
     </div>
-
   <% end %>
 
 </div>

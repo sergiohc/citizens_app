@@ -12,3 +12,6 @@ application.register("components--flash", Components__FlashController)
 
 import PreviewsController from "./previews_controller"
 application.register("previews", PreviewsController)
+
+import SearchController from "./search_controller"
+application.register("search", SearchController)

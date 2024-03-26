@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Municipe < ApplicationRecord
+  include PgSearch::Model
+
+  pg_search_scope :search_municipes,
+                  against: %i[national_health_card cpf email],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+
   # One-to-one association with Address. The address is automatically destroyed if the Municipe is deleted.
   has_one :address, dependent: :destroy
 

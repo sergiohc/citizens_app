@@ -51,9 +51,15 @@ class MunicipesController < ApplicationController
     @municipe = Municipe.find(params[:id])
   end
 
+  # rubocop:disable Layout/LineLength, Lint/MissingCopEnableDirective
   def municipes
-    @pagy, @municipes = pagy(Municipe.includes(:address).all, items: 5,
-                                                            link_extra: 'data-turbo-frame="search"')
+    if params[:query].present?
+      @pagy, @municipes = pagy(Municipe.search_municipes(params[:query]).includes(:address), items: 5,
+                                                                                              link_extra: 'data-turbo-frame="search"')
+    else
+      @pagy, @municipes = pagy(Municipe.includes(:address).all, items: 5,
+                                                                link_extra: 'data-turbo-frame="search"')
+    end
   end
 
   def build_municipe

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_12_190822) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_26_194806) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_190822) do
     t.index ["cpf"], name: "index_municipes_on_cpf", unique: true
     t.index ["email"], name: "index_municipes_on_email", unique: true
     t.index ["national_health_card"], name: "index_municipes_on_national_health_card", unique: true
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
